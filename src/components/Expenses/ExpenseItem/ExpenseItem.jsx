@@ -1,3 +1,5 @@
+import ExpenseDate from "../ExpenseDate/ExpenseDate";
+
 const ExpenseItem = ({ id, title, amount, createdAt }) => {
   return (
     <div className="col-4">
@@ -7,7 +9,8 @@ const ExpenseItem = ({ id, title, amount, createdAt }) => {
         </div>
         <div className="card-body">
           <p>Amount : {amount}</p>
-          <p>Created At: {createdAt.toISOString()}</p>
+          <ExpenseDate createdAt={createdAt} />
+          {/* <p>Created At: {createdAt.toISOString()}</p> */}
         </div>
       </div>
     </div>
