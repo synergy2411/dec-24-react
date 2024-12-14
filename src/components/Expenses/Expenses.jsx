@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
+import ExpenseForm from "./ExpenseForm/ExpenseForm";
 
 const INITIAL_EXPENSES = [
   {
@@ -25,6 +26,8 @@ const INITIAL_EXPENSES = [
 function Expenses() {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
 
+  const [isLoaded, setIsLoaded] = useState(true);
+
   const deleteExpense = (expenseId) => {
     console.log("ID : ", expenseId);
     setExpenses((prevExpenses) =>
@@ -32,9 +35,27 @@ function Expenses() {
     );
   };
 
+  const addExpense = (expense) =>
+    setExpenses((prevExpense) => [expense, ...prevExpense]);
+
   return (
     <>
       <h1 className="text-center">My Expenses</h1>
+
+      <div className="row">
+        <div className="col-4 offset-4">
+          <div className="d-grid">
+            <button
+              className="btn btn-primary"
+              onClick={() => setIsLoaded(!isLoaded)}
+            >
+              {isLoaded ? "Hide Form" : "Show Form"}
+            </button>
+          </div>
+        </div>
+      </div>
+      {isLoaded && <ExpenseForm />}
+
       <div className="row">
         {expenses.map((expense) => (
           <ExpenseItem {...expense} deleteExpense={deleteExpense} />
