@@ -26,7 +26,7 @@ const INITIAL_EXPENSES = [
 function Expenses() {
   const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
 
-  const [isLoaded, setIsLoaded] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   const deleteExpense = (expenseId) => {
     console.log("ID : ", expenseId);
@@ -37,6 +37,8 @@ function Expenses() {
 
   const addExpense = (expense) =>
     setExpenses((prevExpense) => [expense, ...prevExpense]);
+
+  const onCloseForm = () => setIsLoaded(false);
 
   return (
     <>
@@ -54,7 +56,7 @@ function Expenses() {
           </div>
         </div>
       </div>
-      {isLoaded && <ExpenseForm />}
+      {isLoaded && <ExpenseForm onCloseForm={onCloseForm} />}
 
       <div className="row">
         {expenses.map((expense) => (

@@ -1,0 +1,19 @@
+.backdrop {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #444;
+  z-index: 50;
+}
+.my-dialog {
+  position: fixed;
+  left: 25vw;
+  top: 15vh;
+  width: 50vw;
+  /* height: 60vh; */
+  background-color: #fff;
+  z-index: 75;
+  padding: 24px;
+}
