@@ -1,38 +1,31 @@
 import React from "react";
 
 function Expenses() {
-  let username = "John Doe";
-  let product = {
-    name: "iPhone",
-    qty: 0,
-    price: 1999,
+  let expense = {
+    id: "e001",
+    title: "pot the plants",
+    amount: 99,
+    createdAt: new Date("Dec 1, 2024"),
   };
-
-  let friends = ["Monica", "Ross", "Chandler", "Joey"];
 
   return (
     <>
-      <div>
-        <h2 className="heading">Expenses coming soon...</h2>
-      </div>
-      <div>
-        <p>Sum : {3 + 7}</p>
-        <p>Username : {username}</p>
-        <p>Product Name : {product.name}</p>
-        <p>Quantity : {product.qty}</p>
-        {product.qty > 0 && <p>Price: {product.price}</p>}
-        {/* <p>Product : {product}</p> -- ERROR */}
-
-        <ul>
-          {friends.map((friend) => (
-            <li>{friend}</li>
-          ))}
-        </ul>
+      <h1 className="text-center">My Expenses</h1>
+      <div className="row">
+        <div className="col-4">
+          <div className="card">
+            <div className="card-header">
+              <h5>{expense.title.toUpperCase()}</h5>
+            </div>
+            <div className="card-body">
+              <p>Amount : {expense.amount}</p>
+              <p>Created At: {expense.createdAt.toISOString()}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
 }
 
 export default Expenses;
-
-// React.createElement("div", {}, "")

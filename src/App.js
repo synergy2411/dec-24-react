@@ -2,7 +2,7 @@ import Expenses from "./components/Expenses/Expenses";
 
 function App() {
   return (
-    <div>
+    <div className="container">
       <h1>Hello React!</h1>
       <hr />
       <Expenses />
