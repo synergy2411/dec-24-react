@@ -1,11 +1,19 @@
+import { useState } from "react";
 import classes from "./ExpenseForm.module.css";
 
 const ExpenseForm = ({ onCloseForm }) => {
+  const [enteredTitle, setEnteredTitle] = useState("");
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log("Title : ", enteredTitle);
+  };
+
   return (
     <div className={classes["backdrop"]}>
       <div className={classes["my-dialog"]}>
         <h1 className="text-center">Add Expense Form</h1>
-        <form>
+        <form onSubmit={submitHandler}>
           {/* title */}
           <div className="form-floating mb-3">
             <input
@@ -14,10 +22,11 @@ const ExpenseForm = ({ onCloseForm }) => {
               name="title"
               id="title"
               placeholder=""
+              value={enteredTitle}
+              onChange={(e) => setEnteredTitle(e.target.value)}
             />
             <label htmlFor="title">Title</label>
           </div>
-
           {/* amount */}
           <div className="form-floating mb-3">
             <input
@@ -48,7 +57,9 @@ const ExpenseForm = ({ onCloseForm }) => {
           <div className="row">
             <div className="col">
               <div className="d-grid">
-                <button className="btn btn-primary">Add</button>
+                <button className="btn btn-primary" type="submit">
+                  Add
+                </button>
               </div>
             </div>
             <div className="col">
