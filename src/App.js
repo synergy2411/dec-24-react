@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Expenses from "./components/Expenses/Expenses";
 import DemoClassBased from "./components/playground/DemoClassBased";
+import Auth from "./components/playground/auth";
 
 function App() {
   const [counter, setCounter] = useState(0);
@@ -18,7 +19,8 @@ function App() {
 
       <hr />
 
-      {counter <= 3 && <DemoClassBased counter={counter} />}
+      <Auth />
+      {/* {counter <= 3 && <DemoClassBased counter={counter} />} */}
       {/* <Expenses /> */}
     </div>
   );

@@ -85,7 +85,11 @@ function Expenses() {
 
       <div className="row">
         {filteredExpenses.map((expense) => (
-          <ExpenseItem {...expense} deleteExpense={deleteExpense} />
+          <ExpenseItem
+            key={expense.id}
+            {...expense}
+            deleteExpense={deleteExpense}
+          />
         ))}
       </div>
     </>
