@@ -2,7 +2,7 @@ import ExpenseDate from "../ExpenseDate/ExpenseDate";
 
 const ExpenseItem = ({ id, title, amount, createdAt, deleteExpense }) => {
   return (
-    <div className="col-4">
+    <div className="col-4 mb-3">
       <div className="card">
         <div className="card-header">
           <h5>{title.toUpperCase()}</h5>

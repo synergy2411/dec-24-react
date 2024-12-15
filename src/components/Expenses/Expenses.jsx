@@ -38,8 +38,10 @@ function Expenses() {
     );
   };
 
-  const addExpense = (expense) =>
+  const addExpense = (expense) => {
     setExpenses((prevExpense) => [expense, ...prevExpense]);
+    onCloseForm();
+  };
 
   const onCloseForm = () => setIsLoaded(false);
 
@@ -77,7 +79,9 @@ function Expenses() {
           />
         </div>
       </div>
-      {isLoaded && <ExpenseForm onCloseForm={onCloseForm} />}
+      {isLoaded && (
+        <ExpenseForm onCloseForm={onCloseForm} addExpense={addExpense} />
+      )}
 
       <div className="row">
         {filteredExpenses.map((expense) => (
