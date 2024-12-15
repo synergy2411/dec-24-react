@@ -3,21 +3,41 @@ import { v4 } from "uuid";
 import classes from "./ExpenseForm.module.css";
 
 const ExpenseForm = ({ onCloseForm, addExpense }) => {
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredAmount, setEnteredAmount] = useState("");
-  const [enteredCreatedAt, setEnteredCreatedAt] = useState("");
+  const [expense, setExpense] = useState({
+    title: "",
+    amount: "",
+    createdAt: "",
+  });
 
   const submitHandler = (e) => {
     e.preventDefault();
     let newExpense = {
       id: v4(),
-      title: enteredTitle,
-      amount: +enteredAmount,
-      createdAt: new Date(enteredCreatedAt),
+      ...expense,
     };
     addExpense(newExpense);
   };
 
+  const changeHandler = (e) => {
+    if (e.target.name === "title") {
+      setExpense((prevExpense) => ({
+        ...prevExpense,
+        title: e.target.value,
+      }));
+    }
+    if (e.target.name === "amount") {
+      setExpense((prevExpense) => ({
+        ...prevExpense,
+        amount: +e.target.value,
+      }));
+    }
+    if (e.target.name === "createdAt") {
+      setExpense((prevExpense) => ({
+        ...prevExpense,
+        createdAt: new Date(e.target.value),
+      }));
+    }
+  };
   return (
     <div className={classes["backdrop"]}>
       <div className={classes["my-dialog"]}>
@@ -31,8 +51,8 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
               name="title"
               id="title"
               placeholder=""
-              value={enteredTitle}
-              onChange={(e) => setEnteredTitle(e.target.value)}
+              value={expense.title}
+              onChange={changeHandler}
             />
             <label htmlFor="title">Title</label>
           </div>
@@ -46,8 +66,8 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
               placeholder=""
               min="0.5"
               step="0.5"
-              value={enteredAmount}
-              onChange={(e) => setEnteredAmount(e.target.value)}
+              value={expense.amount}
+              onChange={changeHandler}
             />
             <label htmlFor="amount">Amount</label>
           </div>
@@ -56,13 +76,13 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
             <input
               type="date"
               className="form-control"
-              name="creaedAt"
+              name="createdAt"
               id="creaedAt"
               placeholder=""
               min="2022-04-01"
               max="2025-03-31"
-              value={enteredCreatedAt}
-              onChange={(e) => setEnteredCreatedAt(e.target.value)}
+              value={expense.createdAt}
+              onChange={changeHandler}
             />
             <label htmlFor="creaedAt">Creaed At</label>
           </div>
