@@ -1,0 +1,22 @@
+{
+  "expenses": [
+    {
+      "id": "e001",
+      "title": "pot the plants",
+      "amount": 99,
+      "createdAt": "Dec 1, 2024"
+    },
+    {
+      "id": "e002",
+      "title": "renew card insurance",
+      "amount": 199,
+      "createdAt": "Oct 20, 2023"
+    },
+    {
+      "id": "e003",
+      "title": "Shopping",
+      "amount": 49,
+      "createdAt": "Aug 13, 2022"
+    }
+  ]
+}

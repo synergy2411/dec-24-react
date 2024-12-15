@@ -20,10 +20,10 @@ function App() {
 
       <hr />
 
-      <DemoUseEffect />
+      {/* <DemoUseEffect /> */}
       {/* <Auth /> */}
       {/* {counter <= 3 && <DemoClassBased counter={counter} />} */}
-      {/* <Expenses /> */}
+      <Expenses />
     </div>
   );
 }

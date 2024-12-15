@@ -25,7 +25,8 @@ const DemoUseEffect = () => {
       notifier = setTimeout(() => {
         fetch(`https://api.github.com/users/${searchTerm}/repos`)
           .then((response) => response.json())
-          .then((repos) => setRepos(repos));
+          .then((repos) => setRepos(repos))
+          .catch((error) => console.log(error));
       }, 2000);
     }
     return () => {
