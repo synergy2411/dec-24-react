@@ -9,6 +9,8 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
     createdAt: "",
   });
 
+  const [titleError, setTitleError] = useState("");
+
   const submitHandler = (e) => {
     e.preventDefault();
     let newExpense = {
@@ -16,6 +18,18 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
       ...expense,
     };
     addExpense(newExpense);
+  };
+
+  const titleBlurHandler = (e) => {
+    if (e.target.value.trim() === "") {
+      setTitleError("Title can not be empty");
+      return;
+    }
+    if (e.target.value.length < 6) {
+      setTitleError("Title should have atleast 6 characters");
+      return;
+    }
+    setTitleError("");
   };
 
   const changeHandler = (e) => {
@@ -42,6 +56,9 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
     <div className={classes["backdrop"]}>
       <div className={classes["my-dialog"]}>
         <h1 className="text-center">Add Expense Form</h1>
+        {titleError !== "" && (
+          <p className="alert alert-danger">{titleError}</p>
+        )}
         <form onSubmit={submitHandler}>
           {/* title */}
           <div className="form-floating mb-3">
@@ -53,6 +70,7 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
               placeholder=""
               value={expense.title}
               onChange={changeHandler}
+              onBlur={titleBlurHandler}
             />
             <label htmlFor="title">Title</label>
           </div>
@@ -90,7 +108,11 @@ const ExpenseForm = ({ onCloseForm, addExpense }) => {
           <div className="row">
             <div className="col">
               <div className="d-grid">
-                <button className="btn btn-primary" type="submit">
+                <button
+                  disabled={titleError !== ""}
+                  className="btn btn-primary"
+                  type="submit"
+                >
                   Add
                 </button>
               </div>
