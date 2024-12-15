@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
 import ExpenseForm from "./ExpenseForm/ExpenseForm";
+import ExpenseFilter from "./ExpenseFilter/ExpenseFilter";
 
 const INITIAL_EXPENSES = [
   {
@@ -44,7 +45,7 @@ function Expenses() {
     <>
       <h1 className="text-center">My Expenses</h1>
 
-      <div className="row">
+      <div className="row mb-4">
         <div className="col-4 offset-4">
           <div className="d-grid">
             <button
@@ -54,6 +55,9 @@ function Expenses() {
               {isLoaded ? "Hide Form" : "Show Form"}
             </button>
           </div>
+        </div>
+        <div className="col-4">
+          <ExpenseFilter />
         </div>
       </div>
       {isLoaded && <ExpenseForm onCloseForm={onCloseForm} />}
