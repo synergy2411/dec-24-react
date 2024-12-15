@@ -29,6 +29,8 @@ function Expenses() {
 
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const [selectedYear, setSelectedYear] = useState("");
+
   const deleteExpense = (expenseId) => {
     console.log("ID : ", expenseId);
     setExpenses((prevExpenses) =>
@@ -40,6 +42,18 @@ function Expenses() {
     setExpenses((prevExpense) => [expense, ...prevExpense]);
 
   const onCloseForm = () => setIsLoaded(false);
+
+  const onSelectYear = (selYear) => {
+    setSelectedYear(selYear);
+  };
+
+  let filteredExpenses = expenses;
+
+  if (selectedYear !== "") {
+    filteredExpenses = expenses.filter(
+      (expense) => expense.createdAt.getFullYear() === +selectedYear
+    );
+  }
 
   return (
     <>
@@ -57,13 +71,16 @@ function Expenses() {
           </div>
         </div>
         <div className="col-4">
-          <ExpenseFilter />
+          <ExpenseFilter
+            onSelectYear={onSelectYear}
+            selectedYear={selectedYear}
+          />
         </div>
       </div>
       {isLoaded && <ExpenseForm onCloseForm={onCloseForm} />}
 
       <div className="row">
-        {expenses.map((expense) => (
+        {filteredExpenses.map((expense) => (
           <ExpenseItem {...expense} deleteExpense={deleteExpense} />
         ))}
       </div>
