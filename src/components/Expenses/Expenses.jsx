@@ -1,46 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
 import ExpenseForm from "./ExpenseForm/ExpenseForm";
 import ExpenseFilter from "./ExpenseFilter/ExpenseFilter";
 
-const INITIAL_EXPENSES = [
-  {
-    id: "e001",
-    title: "pot the plants",
-    amount: 99,
-    createdAt: new Date("Dec 1, 2024"),
-  },
-  {
-    id: "e002",
-    title: "renew card insurance",
-    amount: 199,
-    createdAt: new Date("Oct 20, 2023"),
-  },
-  {
-    id: "e003",
-    title: "Shopping",
-    amount: 49,
-    createdAt: new Date("Aug 13, 2022"),
-  },
-];
+// const INITIAL_EXPENSES = [
+//   {
+//     id: "e001",
+//     title: "pot the plants",
+//     amount: 99,
+//     createdAt: new Date("Dec 1, 2024"),
+//   },
+//   {
+//     id: "e002",
+//     title: "renew card insurance",
+//     amount: 199,
+//     createdAt: new Date("Oct 20, 2023"),
+//   },
+//   {
+//     id: "e003",
+//     title: "Shopping",
+//     amount: 49,
+//     createdAt: new Date("Aug 13, 2022"),
+//   },
+// ];
 
 function Expenses() {
-  const [expenses, setExpenses] = useState(INITIAL_EXPENSES);
+  const [expenses, setExpenses] = useState([]);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
   const [selectedYear, setSelectedYear] = useState("");
 
-  const deleteExpense = (expenseId) => {
+  useEffect(() => {
+    const fetchExpenses = async () => {
+      try {
+        const response = await fetch("http://localhost:3030/expenses");
+        const expenses = await response.json();
+        setExpenses(
+          expenses.map((exp) => ({
+            ...exp,
+            createdAt: new Date(exp.createdAt),
+          }))
+        );
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchExpenses();
+  }, []);
+
+  const deleteExpense = async (expenseId) => {
     console.log("ID : ", expenseId);
-    setExpenses((prevExpenses) =>
-      prevExpenses.filter((expense) => expense.id !== expenseId)
-    );
+    try {
+      await fetch(`http://localhost:3030/expenses/${expenseId}`, {
+        method: "DELETE",
+      });
+      setExpenses((prevExpenses) =>
+        prevExpenses.filter((expense) => expense.id !== expenseId)
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
-  const addExpense = (expense) => {
-    setExpenses((prevExpense) => [expense, ...prevExpense]);
-    onCloseForm();
+  const addExpense = async (expense) => {
+    try {
+      const response = await fetch("http://localhost:3030/expenses", {
+        method: "POST",
+        body: JSON.stringify(expense),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const newExpense = await response.json();
+      setExpenses((prevExpense) => [
+        { ...newExpense, createdAt: new Date(newExpense.createdAt) },
+        ...prevExpense,
+      ]);
+      onCloseForm();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onCloseForm = () => setIsLoaded(false);
