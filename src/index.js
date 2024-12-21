@@ -10,6 +10,9 @@ import HomePage from "./pages/home/home";
 import ContactUsPage from "./pages/contact/contact";
 import RootLayoutPage from "./pages/root-layout/root-layout";
 import CoursesPage, { CoursesLoader } from "./pages/courses/courses";
+import CourseDetailPage, {
+  CourseDetailLoader,
+} from "./pages/courses/course-details";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,11 @@ const router = createBrowserRouter([
         path: "/courses",
         element: <CoursesPage />,
         loader: CoursesLoader,
+      },
+      {
+        path: "/courses/:courseId",
+        element: <CourseDetailPage />,
+        loader: CourseDetailLoader,
       },
       {
         path: "/contact",
