@@ -46,7 +46,10 @@ function Expenses() {
         console.log(err);
       }
     };
+    // setTimeout(() => {
+    // http polling
     fetchExpenses();
+    // }, 500);
   }, []);
 
   const deleteExpense = async (expenseId) => {
@@ -73,6 +76,7 @@ function Expenses() {
         },
       });
       const newExpense = await response.json();
+
       setExpenses((prevExpense) => [
         { ...newExpense, createdAt: new Date(newExpense.createdAt) },
         ...prevExpense,
