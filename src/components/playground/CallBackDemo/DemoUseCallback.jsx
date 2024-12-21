@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import DemoChild from "./DemoChild";
 
 const DemoUseCallback = () => {
   const [toggle, setToggle] = useState(true);
+
+  const demoFn = useCallback(() => console.log("Who's this?"), []);
 
   console.log("Parent Loaded");
 
@@ -14,7 +16,7 @@ const DemoUseCallback = () => {
           Toggle
         </button>
 
-        <DemoChild toggle={true} />
+        <DemoChild toggle={true} demoFn={demoFn} />
       </div>
     </>
   );
