@@ -13,6 +13,7 @@ import CoursesPage, { CoursesLoader } from "./pages/courses/courses";
 import CourseDetailPage, {
   CourseDetailLoader,
 } from "./pages/courses/course-details";
+import NewCoursePage, { NewCourseAction } from "./pages/courses/new-course";
 
 const router = createBrowserRouter([
   {
@@ -31,12 +32,20 @@ const router = createBrowserRouter([
         path: "/courses",
         element: <CoursesPage />,
         loader: CoursesLoader,
+        children: [
+          {
+            path: "new",
+            element: <NewCoursePage />,
+            action: NewCourseAction,
+          },
+          {
+            path: ":courseId",
+            element: <CourseDetailPage />,
+            loader: CourseDetailLoader,
+          },
+        ],
       },
-      {
-        path: "/courses/:courseId",
-        element: <CourseDetailPage />,
-        loader: CourseDetailLoader,
-      },
+
       {
         path: "/contact",
         element: <ContactUsPage />,

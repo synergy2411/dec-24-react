@@ -10,7 +10,7 @@
 .my-dialog {
   position: fixed;
   left: 25vw;
-  top: 15vh;
+  top: 5vh;
   width: 50vw;
   /* height: 60vh; */
   background-color: #fff;
