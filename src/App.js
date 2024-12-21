@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Expenses from "./components/Expenses/Expenses";
 import DemoClassBased from "./components/playground/DemoClassBased";
 import Auth from "./components/playground/auth";
@@ -16,7 +17,7 @@ function App() {
 
       <hr />
 
-      <DemoUseCallback />
+      {/* <DemoUseCallback /> */}
       {/* <DemoUseReducer /> */}
 
       {/* <DemoUseEffect /> */}
