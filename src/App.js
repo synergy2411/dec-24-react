@@ -5,6 +5,7 @@ import Auth from "./components/playground/auth";
 import DemoUseEffect from "./components/playground/DemoUseEffect";
 import AuthContext from "./context/auth-context";
 import DemoUseReducer from "./components/playground/DemoUseReducer";
+import DemoUseCallback from "./components/playground/CallBackDemo/DemoUseCallback";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +16,8 @@ function App() {
 
       <hr />
 
-      <DemoUseReducer />
+      <DemoUseCallback />
+      {/* <DemoUseReducer /> */}
 
       {/* <DemoUseEffect /> */}
       {/* {counter <= 3 && <DemoClassBased counter={counter} />} */}

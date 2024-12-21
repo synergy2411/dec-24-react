@@ -9,6 +9,13 @@ function reducerFn(state, action) {
     return { ...state, counter: state.counter + action.payload };
   } else if (action.type === "STORE_RESULT") {
     return { ...state, result: [state.counter, ...state.result] };
+  } else if (action.type === "DELETE_RESULT") {
+    //   state.result.splice(action.payload, 1)         // Changing state mutably - NOT GOOD
+
+    return {
+      ...state,
+      result: state.result.filter((val, idx) => idx !== action.payload),
+    };
   }
 
   return state;
@@ -55,8 +62,12 @@ const DemoUseReducer = () => {
           </div>
           <br />
           <ul className="list-group">
-            {state.result.map((r) => (
-              <li className="list-group-item mb-2" key={r}>
+            {state.result.map((r, i) => (
+              <li
+                className="list-group-item mb-2"
+                key={i}
+                onClick={() => dispatch({ type: "DELETE_RESULT", payload: i })}
+              >
                 {r}
               </li>
             ))}
