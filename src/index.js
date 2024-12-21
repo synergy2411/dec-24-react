@@ -6,19 +6,28 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
 
 import Expenses from "./components/Expenses/Expenses";
+import HomePage from "./pages/home/home";
+import ContactUsPage from "./pages/contact/contact";
+import RootLayoutPage from "./pages/root-layout/root-layout";
 
 const router = createBrowserRouter([
   {
     path: "/", // http://localhost:3000
-    element: <h1>Home Page</h1>,
-  },
-  {
-    path: "/expenses",
-    element: <Expenses />,
-  },
-  {
-    path: "/contact",
-    element: <h1>Contact us Page</h1>,
+    element: <RootLayoutPage />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: "/expenses",
+        element: <Expenses />,
+      },
+      {
+        path: "/contact",
+        element: <ContactUsPage />,
+      },
+    ],
   },
 ]);
 
