@@ -11,6 +11,11 @@ function MainNavigation() {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/courses" className="nav-link">
+              Courses
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/expenses" className="nav-link">
               Expenses
             </NavLink>

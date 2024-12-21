@@ -9,6 +9,7 @@ import Expenses from "./components/Expenses/Expenses";
 import HomePage from "./pages/home/home";
 import ContactUsPage from "./pages/contact/contact";
 import RootLayoutPage from "./pages/root-layout/root-layout";
+import CoursesPage, { CoursesLoader } from "./pages/courses/courses";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
       {
         path: "/expenses",
         element: <Expenses />,
+      },
+      {
+        path: "/courses",
+        element: <CoursesPage />,
+        loader: CoursesLoader,
       },
       {
         path: "/contact",
