@@ -1,10 +1,16 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import DemoChild from "./DemoChild";
 
 const DemoUseCallback = () => {
   const [toggle, setToggle] = useState(true);
 
   const demoFn = useCallback(() => console.log("Who's this?"), []);
+
+  const marks = useMemo(() => {
+    return [99, 98, 96, 95, 90];
+  }, []);
+
+  const memoFn = useMemo(() => () => console.log("Memoized Function"), []);
 
   console.log("Parent Loaded");
 
@@ -16,7 +22,7 @@ const DemoUseCallback = () => {
           Toggle
         </button>
 
-        <DemoChild toggle={true} demoFn={demoFn} />
+        <DemoChild toggle={true} demoFn={demoFn} marks={marks} />
       </div>
     </>
   );

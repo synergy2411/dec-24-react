@@ -1,7 +1,9 @@
 import { memo } from "react";
 
-const DemoChild = ({ toggle, demoFn }) => {
+const DemoChild = ({ toggle, demoFn, marks }) => {
   console.log("Child Loaded");
+
+  console.log("Marks : ", marks);
 
   return (
     <>
