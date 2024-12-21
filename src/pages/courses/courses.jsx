@@ -1,21 +1,16 @@
 import { useLoaderData } from "react-router-dom";
+import CourseItem from "../../components/Courses/CourseItem";
 
 function CoursesPage() {
   const courses = useLoaderData();
 
   return (
     <>
-      <h1>My Courses</h1>
+      <h1 className="text-center mb-4">List of Courses</h1>
       <div className="row">
-        <div className="col-8 offset-2">
-          <ul className="list-unstyled list-group">
-            {courses.map((course) => (
-              <li className="list-group-item" key={course.id}>
-                {course.title}
-              </li>
-            ))}
-          </ul>
-        </div>
+        {courses.map((course) => (
+          <CourseItem course={course} key={course.id} />
+        ))}
       </div>
     </>
   );
