@@ -6,6 +6,7 @@ const ExpenseDate = ({ createdAt }) => {
   const year = createdAt.getFullYear();
 
   return (
+    // Old way of consuming context API
     <AuthContext.Consumer>
       {(context) => {
         const createdDate = context.isLoggedIn ? (
