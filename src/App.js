@@ -4,6 +4,7 @@ import DemoClassBased from "./components/playground/DemoClassBased";
 import Auth from "./components/playground/auth";
 import DemoUseEffect from "./components/playground/DemoUseEffect";
 import AuthContext from "./context/auth-context";
+import DemoUseReducer from "./components/playground/DemoUseReducer";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,12 +15,14 @@ function App() {
 
       <hr />
 
+      <DemoUseReducer />
+
       {/* <DemoUseEffect /> */}
       {/* {counter <= 3 && <DemoClassBased counter={counter} />} */}
-      <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      {/* <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
         <Auth />
         <Expenses />
-      </AuthContext.Provider>
+      </AuthContext.Provider> */}
     </div>
   );
 }
