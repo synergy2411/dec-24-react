@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { userRegistration } from "../../store/auth/auth-slice";
+import { userLogin, userRegistration } from "../../store/auth/auth-slice";
 import { useRef } from "react";
 
 function AuthPage() {
@@ -8,12 +8,21 @@ function AuthPage() {
 
   const dispatch = useDispatch();
 
-  const { isLoading, errorMessage, message } = useSelector(
+  const { isLoading, errorMessage, message, token } = useSelector(
     (store) => store.authReducer
   );
 
+  console.log("TOKEN : ", token);
+
   const submitHandler = (e) => {
     e.preventDefault();
+
+    dispatch(
+      userLogin({
+        email: usernameInputRef.current.value,
+        password: passwordInputRef.current.value,
+      })
+    );
   };
   return (
     <form onSubmit={submitHandler}>
