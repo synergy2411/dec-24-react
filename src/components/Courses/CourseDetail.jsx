@@ -1,8 +1,14 @@
-import { Link, useSubmit } from "react-router-dom";
+import { Link, useNavigate, useSubmit } from "react-router-dom";
 import classes from "./CourseDetail.module.css";
 
 function CourseDetail({ course }) {
   const submit = useSubmit();
+  const navigate = useNavigate();
+
+  const editCourseHandler = (e) => {
+    e.preventDefault();
+    navigate(`/courses/${course.id}/edit`);
+  };
 
   const deleteCourseHandler = (e) => {
     e.preventDefault();
@@ -28,7 +34,12 @@ function CourseDetail({ course }) {
             <div className="row mb-4">
               <div className="col">
                 <div className="d-grid">
-                  <button className="btn btn-success">Edit</button>
+                  <button
+                    className="btn btn-success"
+                    onClick={editCourseHandler}
+                  >
+                    Edit
+                  </button>
                 </div>
               </div>
               <div className="col">

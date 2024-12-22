@@ -15,6 +15,7 @@ import CourseDetailPage, {
   CourseAction,
 } from "./pages/courses/course-details";
 import NewCoursePage, { NewCourseAction } from "./pages/courses/new-course";
+import CourseEditPage, { CourseEditAction } from "./pages/courses/course-edit";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,12 @@ const router = createBrowserRouter([
             element: <CourseDetailPage />,
             loader: CourseDetailLoader,
             action: CourseAction,
+          },
+          {
+            path: ":courseId/edit",
+            element: <CourseEditPage />,
+            loader: CourseDetailLoader,
+            action: CourseEditAction,
           },
         ],
       },
