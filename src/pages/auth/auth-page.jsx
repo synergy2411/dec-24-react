@@ -26,8 +26,8 @@ function AuthPage() {
   };
   return (
     <form onSubmit={submitHandler}>
-      {errorMessage && <p>{errorMessage}</p>}
-      {message && <p>{message}</p>}
+      {errorMessage && <p className="alert alert-danger">{errorMessage}</p>}
+      {message && <p className="alert alert-success">{message}</p>}
 
       {/* username */}
       <div className="form-floating mb-3">
