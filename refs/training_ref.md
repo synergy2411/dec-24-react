@@ -171,5 +171,22 @@ prevProp === currProp
 - Loaders : loads the route data before page is rendered; Make component clean
 - useLoaderData() : consume the data available in route
 - useNavigate() : programmatically navigates the user
+- useSubmit() : programmatically submits the form
+- useRouteLoaderData() : access data available at parent route
 - Actions : submits the form at client side
 - Outlet : space to load the child page template
+- Error Page
+- Not Found Page
+
+# Redux
+
+- useState : component level state
+- useReducer : complex state management in a component
+- Context API : Not optimized for frequently data change
+- Redux : App-wide state, optimized for data change, unidirectional data flow pattern
+
+- npm install @reduxjs/toolkit react-redux
+
+- useSelector() : access the store
+
+# Testing

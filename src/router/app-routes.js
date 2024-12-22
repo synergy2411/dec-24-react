@@ -12,6 +12,7 @@ import CourseEditPage, { CourseEditAction } from "../pages/courses/course-edit";
 import ContactUsPage from "../pages/contact/contact";
 import ErrorPage from "../pages/error/error-page";
 import NotFoundPage from "../pages/not-found/page-not-found";
+import TodoPage from "../pages/todo/todo";
 
 const router = createBrowserRouter([
   {
@@ -56,7 +57,10 @@ const router = createBrowserRouter([
           },
         ],
       },
-
+      {
+        path: "/todos",
+        element: <TodoPage />,
+      },
       {
         path: "/contact",
         element: <ContactUsPage />,

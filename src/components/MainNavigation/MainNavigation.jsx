@@ -21,6 +21,11 @@ function MainNavigation() {
             </NavLink>
           </li>
           <li className="nav-item">
+            <NavLink to="/todos" className="nav-link">
+              Todos
+            </NavLink>
+          </li>
+          <li className="nav-item">
             <NavLink to="/contact" className="nav-link">
               Contact Us
             </NavLink>
