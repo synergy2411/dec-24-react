@@ -14,14 +14,17 @@ const todoSlice = createSlice({
   reducers: {
     addTodo(state, action) {
       let newTodo = {
-        id: "",
+        id: "t" + (state.todos.length + 1),
         label: action.payload, // todo label
         status: "pending",
       };
       state.todos.push(newTodo);
     },
     deleteTodo(state, action) {
-      state.todos.splice(action.payload, 1); // payload - index
+      const position = state.todos.findIndex(
+        (todo) => todo.id === action.payload
+      );
+      state.todos.splice(position, 1); // payload - index
     },
   },
 });

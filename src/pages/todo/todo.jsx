@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import TodoItem from "../../components/Todos/TodoItem";
 
 function TodoPage() {
   const todos = useSelector((store) => {
@@ -9,9 +10,9 @@ function TodoPage() {
     <>
       <h1>My Todos</h1>
 
-      <ul>
+      <ul className="list-group">
         {todos.map((todo) => (
-          <li key={todo.id}>{todo.label.toUpperCase()}</li>
+          <TodoItem todo={todo} key={todo.id} />
         ))}
       </ul>
     </>
