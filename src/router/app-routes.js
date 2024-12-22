@@ -11,6 +11,7 @@ import CourseDetailPage, {
 import CourseEditPage, { CourseEditAction } from "../pages/courses/course-edit";
 import ContactUsPage from "../pages/contact/contact";
 import ErrorPage from "../pages/error/error-page";
+import NotFoundPage from "../pages/not-found/page-not-found";
 
 const router = createBrowserRouter([
   {
@@ -38,15 +39,20 @@ const router = createBrowserRouter([
           },
           {
             path: ":courseId",
-            element: <CourseDetailPage />,
             loader: CourseDetailLoader,
-            action: CourseAction,
-          },
-          {
-            path: ":courseId/edit",
-            element: <CourseEditPage />,
-            loader: CourseDetailLoader,
-            action: CourseEditAction,
+            id: "course-detail-loader",
+            children: [
+              {
+                index: true,
+                element: <CourseDetailPage />,
+                action: CourseAction,
+              },
+              {
+                path: "edit",
+                element: <CourseEditPage />,
+                action: CourseEditAction,
+              },
+            ],
           },
         ],
       },
@@ -54,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/contact",
         element: <ContactUsPage />,
+      },
+      {
+        path: "*",
+        element: <NotFoundPage />,
       },
     ],
   },

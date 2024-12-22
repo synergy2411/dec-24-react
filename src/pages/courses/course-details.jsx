@@ -1,8 +1,11 @@
-import { json, redirect, useLoaderData } from "react-router-dom";
+import { json, redirect, useRouteLoaderData } from "react-router-dom";
 import CourseDetail from "../../components/Courses/CourseDetail";
 
 function CourseDetailPage() {
-  const course = useLoaderData();
+  // const course = useLoaderData();
+
+  const course = useRouteLoaderData("course-detail-loader");
+
   return <CourseDetail course={course} />;
 }
 

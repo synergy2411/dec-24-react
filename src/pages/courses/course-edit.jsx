@@ -1,8 +1,9 @@
-import { json, redirect, useLoaderData } from "react-router-dom";
+import { json, redirect, useRouteLoaderData } from "react-router-dom";
 import CourseForm from "../../components/Courses/CourseForm";
 
 function CourseEditPage() {
-  const course = useLoaderData();
+  // const course = useLoaderData();
+  const course = useRouteLoaderData("course-detail-loader");
   return <CourseForm course={course} />;
 }
 
