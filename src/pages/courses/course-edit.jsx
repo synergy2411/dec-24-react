@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from "react-router-dom";
+import { json, redirect, useLoaderData } from "react-router-dom";
 import CourseForm from "../../components/Courses/CourseForm";
 
 function CourseEditPage() {
@@ -26,7 +26,10 @@ export async function CourseEditAction({ request, params }) {
   });
 
   if (!response.ok) {
-    throw new Error("Unable to update the record for - " + courseId);
+    throw json(
+      { message: "Unable to update course for " + params.courseId },
+      { status: 400 }
+    );
   }
 
   return redirect("/courses");

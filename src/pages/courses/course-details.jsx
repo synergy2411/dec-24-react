@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from "react-router-dom";
+import { json, redirect, useLoaderData } from "react-router-dom";
 import CourseDetail from "../../components/Courses/CourseDetail";
 
 function CourseDetailPage() {
@@ -13,7 +13,10 @@ export async function CourseDetailLoader({ params }) {
     `http://localhost:3030/courses/${params.courseId}`
   );
   if (!response.ok) {
-    throw new Error("Could not fetch record for - " + params.courseId);
+    throw json(
+      { message: "Unable to fetch course for " + params.courseId },
+      { status: 404 }
+    );
   }
   return response;
 }
@@ -27,7 +30,10 @@ export async function CourseAction({ request, params }) {
   );
 
   if (!response.ok) {
-    throw new Error("Unable to delete record for - " + params.courseId);
+    throw json(
+      { message: "Unable to delete course for " + params.courseId },
+      { status: 404 }
+    );
   }
 
   return redirect("/courses");

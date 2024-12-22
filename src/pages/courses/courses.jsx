@@ -1,4 +1,4 @@
-import { Link, Outlet, useLoaderData } from "react-router-dom";
+import { json, Link, Outlet, useLoaderData } from "react-router-dom";
 import CourseItem from "../../components/Courses/CourseItem";
 
 function CoursesPage() {
@@ -25,7 +25,7 @@ export default CoursesPage;
 export async function CoursesLoader() {
   const response = await fetch("http://localhost:3030/courses");
   if (!response.ok) {
-    throw new Error("Could not fetch courses");
+    throw json({ message: "Unable to fetch courses" }, { status: 400 });
   }
   return response;
 }

@@ -1,67 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/app-routes";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./index.css";
-
-import Expenses from "./components/Expenses/Expenses";
-import HomePage from "./pages/home/home";
-import ContactUsPage from "./pages/contact/contact";
-import RootLayoutPage from "./pages/root-layout/root-layout";
-import CoursesPage, { CoursesLoader } from "./pages/courses/courses";
-import CourseDetailPage, {
-  CourseDetailLoader,
-  CourseAction,
-} from "./pages/courses/course-details";
-import NewCoursePage, { NewCourseAction } from "./pages/courses/new-course";
-import CourseEditPage, { CourseEditAction } from "./pages/courses/course-edit";
-
-const router = createBrowserRouter([
-  {
-    path: "/", // http://localhost:3000
-    element: <RootLayoutPage />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />,
-      },
-      {
-        path: "/expenses",
-        element: <Expenses />,
-      },
-      {
-        path: "/courses",
-        element: <CoursesPage />,
-        loader: CoursesLoader,
-        children: [
-          {
-            path: "new",
-            element: <NewCoursePage />,
-            action: NewCourseAction,
-          },
-          {
-            path: ":courseId",
-            element: <CourseDetailPage />,
-            loader: CourseDetailLoader,
-            action: CourseAction,
-          },
-          {
-            path: ":courseId/edit",
-            element: <CourseEditPage />,
-            loader: CourseDetailLoader,
-            action: CourseEditAction,
-          },
-        ],
-      },
-
-      {
-        path: "/contact",
-        element: <ContactUsPage />,
-      },
-    ],
-  },
-]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<RouterProvider router={router}></RouterProvider>);
