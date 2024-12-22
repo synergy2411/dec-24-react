@@ -1,10 +1,14 @@
 import { useRef, useContext } from "react";
 import AuthContext from "../../context/auth-context";
 import AuthLogout from "./AuthLogout";
+import { useDispatch } from "react-redux";
+import { userRegistration } from "../../store/auth/auth-slice";
 
 const Auth = () => {
   const usernameInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const dispatch = useDispatch();
 
   const context = useContext(AuthContext);
 
@@ -70,7 +74,19 @@ const Auth = () => {
             </div>
             <div className="col">
               <div className="d-grid">
-                <button className="btn btn-secondary">Reset</button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() =>
+                    dispatch(
+                      userRegistration({
+                        email: usernameInputRef.current.value,
+                        password: passwordInputRef.current.value,
+                      })
+                    )
+                  }
+                >
+                  Register
+                </button>
               </div>
             </div>
           </div>

@@ -13,6 +13,7 @@ import ContactUsPage from "../pages/contact/contact";
 import ErrorPage from "../pages/error/error-page";
 import NotFoundPage from "../pages/not-found/page-not-found";
 import TodoPage from "../pages/todo/todo";
+import AuthPage from "../pages/auth/auth-page";
 
 const router = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/todos",
         element: <TodoPage />,
+      },
+      {
+        path: "/auth",
+        element: <AuthPage />,
       },
       {
         path: "/contact",

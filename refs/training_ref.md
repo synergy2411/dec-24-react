@@ -190,3 +190,16 @@ prevProp === currProp
 - useSelector() : access the store
 
 # Testing
+
+---
+
+- Controlled : Input element state is controlled by React state variable
+
+  > immediate feedback
+  > Validation
+  > Auto-completion
+  > Registration Form
+
+- Uncontrolled (useRef): Input element state is controlled by Browser itself
+  > simply fetch the data from user
+  > Login Page
