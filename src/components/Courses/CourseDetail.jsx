@@ -1,7 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useSubmit } from "react-router-dom";
 import classes from "./CourseDetail.module.css";
 
 function CourseDetail({ course }) {
+  const submit = useSubmit();
+
+  const deleteCourseHandler = (e) => {
+    e.preventDefault();
+    const proceed = window.confirm(
+      "Are you sure to delete this element - " + course.title.toUpperCase()
+    );
+    if (!proceed) {
+      return;
+    }
+    // delete the element
+    submit({}, { action: `/courses/${course.id}`, method: "DELETE" });
+  };
+
   return (
     <div className={classes["backdrop"]}>
       <div className={classes["my-dialog"]}>
@@ -19,7 +33,12 @@ function CourseDetail({ course }) {
               </div>
               <div className="col">
                 <div className="d-grid">
-                  <button className="btn btn-outline-danger">Delete</button>
+                  <button
+                    className="btn btn-outline-danger"
+                    onClick={deleteCourseHandler}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
             </div>

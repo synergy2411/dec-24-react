@@ -130,10 +130,10 @@ component -> JSX Code -> JavaSCript -> VDOM Elements -> Actual DOM -> UI
 
 - useState
 - useEffect
-- useContext
-- useReducer
-- useCallback
-- useMemo
+- useContext : consume Context API
+- useReducer : complex state management; multiple sub-state values
+- useCallback : memoized callbacks; optimizing apps
+- useMemo: memoized values; optimizinf the apps
 
 # Routing and Navigation
 
@@ -146,10 +146,6 @@ component -> JSX Code -> JavaSCript -> VDOM Elements -> Actual DOM -> UI
 - Siblings and Parent component can not acces context data
 - should hold model that do not frequently change e.g. App Theme, JWT Token
 - Provider / Consumer
-
-# Redux Support
-
-# Testing
 
 # Memo - Memoized Value
 
@@ -176,3 +172,4 @@ prevProp === currProp
 - useLoaderData() : consume the data available in route
 - useNavigate() : programmatically navigates the user
 - Actions : submits the form at client side
+- Outlet : space to load the child page template

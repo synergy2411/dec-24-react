@@ -12,6 +12,7 @@ import RootLayoutPage from "./pages/root-layout/root-layout";
 import CoursesPage, { CoursesLoader } from "./pages/courses/courses";
 import CourseDetailPage, {
   CourseDetailLoader,
+  CourseAction,
 } from "./pages/courses/course-details";
 import NewCoursePage, { NewCourseAction } from "./pages/courses/new-course";
 
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
             path: ":courseId",
             element: <CourseDetailPage />,
             loader: CourseDetailLoader,
+            action: CourseAction,
           },
         ],
       },
